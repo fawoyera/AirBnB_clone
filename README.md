@@ -1,0 +1,4 @@
+# AirBnB Clone
+
+## Description:
+This repository is a collaborative effort between Aksaim Mohamed amin and Oluwafemi Awoyera for the ALX Software Engineering program. Our aim is to develop an Airbnb clone using Python, MySQL for database management, Flask web framework for backend development, HTML, and CSS for frontend design. Additionally, we'll integrate RESTful API and JavaScript for enhanced functionality. Join us in creating a feature-rich application with user authentication, property listings, booking management, and more. Your contributions and feedback are valuable as we work together to build an exceptional Airbnb clone. Let's create something amazing! 🏡✨
