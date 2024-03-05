@@ -15,12 +15,27 @@ class BaseModel:
     """
 
     # Initiaisation
-    def __init__(self):
-        """ Initialize BaseModel instance """
+    def __init__(self, *args, **kwargs):
+        """ 
+        Initialize BaseModel instance 
+        
+           *args : Will not be used
+           **kwargs: arguments for the constructor of a BaseModel
+        """
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == "__class__":
+                    continue
+                if key == 'created_at' or key == 'updated_at':
+                    setattr(self, key, datetime.fromisoformat(value))
+                else:
+                    setattr(self, key, value)
 
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+
 
     # Public Methodes
     def __str__(self):
