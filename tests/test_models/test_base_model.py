@@ -2,8 +2,10 @@
 """
     Test module for Base Model of the AirBnB Clone
 """
-import unittest, datetime
+import datetime
+import unittest
 from models.base_model import BaseModel
+
 
 class TestBaseModel(unittest.TestCase):
     """
@@ -19,10 +21,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(b0, "updated_at"))
         b1 = BaseModel()
         b2 = BaseModel()
-        self.assertEqual(type(b1.id).__name__, "str") #id is string
+        self.assertEqual(type(b1.id).__name__, "str")  # id is string
         self.assertEqual(type(b1.created_at).__name__, "datetime")
         self.assertEqual(type(b1.updated_at).__name__, "datetime")
-        self.assertNotEqual(b1.id, b2.id) #unique ids
+        self.assertNotEqual(b1.id, b2.id)  # unique ids
         self.assertTrue(b2.created_at > b1.created_at)
         self.assertTrue(b1.updated_at >= b1.created_at)
         self.assertTrue(b2.updated_at >= b2.created_at)
@@ -62,8 +64,18 @@ class TestBaseModel(unittest.TestCase):
         except Exception:
             pass
         else:
-            self.assertEqual(b5.to_dict(), {"id": b5.id, "created_at": "2024-03-06T13:16:36.890872", "updated_at": "2024-03-06T13:26:36.890874", "__class__": b5.__class__.__name__})
+            self.assertEqual(b5.to_dict(), {"id": b5.id,
+                                            "created_at":
+                                            "2024-03-06T13:16:36.890872",
+                                            "updated_at":
+                                            "2024-03-06T13:26:36.890874",
+                                            "__class__":
+                                            b5.__class__.__name__})
         b6 = BaseModel()
-        self.assertEqual(b6.to_dict(), {"id": b6.id, "created_at": b6.created_at.isoformat(), "updated_at": b6.updated_at.isoformat(), "__class__": b6.__class__.__name__})
-
-
+        self.assertEqual(b6.to_dict(), {"id": b6.id,
+                                        "created_at":
+                                        b6.created_at.isoformat(),
+                                        "updated_at":
+                                        b6.updated_at.isoformat(),
+                                        "__class__":
+                                        b6.__class__.__name__})
