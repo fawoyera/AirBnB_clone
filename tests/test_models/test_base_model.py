@@ -3,8 +3,10 @@
     Test module for Base Model of the AirBnB Clone
 """
 import datetime
+import json
 import unittest
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 class TestBaseModel(unittest.TestCase):
@@ -79,3 +81,29 @@ class TestBaseModel(unittest.TestCase):
                                         b6.updated_at.isoformat(),
                                         "__class__":
                                         b6.__class__.__name__})
+
+    def test_storage(self):
+        """ Test if BaseModel instance is stored in the FileStorage on initialization and save
+        """
+        b1 = BaseModel()
+        self.assertTrue(hasattr(FileStorage, "storage"))
+        storage = FileStorage.storage
+        self.assertIsInstance(storage, FileStorage)
+        FileStorage.__file_path = "files.json"
+        b1.save()
+        with open("files.json", mode="r", encoding="utf-8") as fp:
+            self.assertTrue(f"{b1.__class__.__name__}.{b1.id}" in [key for key in json.load(fp)])
+        
+        b2 = BaseModel()
+        b3 = BaseModel()
+        b2.save()
+        b3.save()
+        with open("files.json", mode="r", encoding="utf-8") as fp:
+            self.assertTrue(f"{b1.__class__.__name__}.{b1.id}" in [key for key in json.load(fp)])
+            self.assertTrue(f"{b2.__class__.__name__}.{b2.id}" in [key for key in json.load(fp)])
+            self.assertTrue(f"{b3.__class__.__name__}.{b3.id}" in [key for key in json.load(fp)])
+
+        objects = FileStorage.__objects
+        self.assertTrue(f"{b1.__class__.__name__}.{b1.id}" in [key for key in objects])
+        self.assertTrue(f"{b2.__class__.__name__}.{b2.id}" in [key for key in objects])
+        self.assertTrue(f"{b3.__class__.__name__}.{b3.id}" in [key for key in objects])
