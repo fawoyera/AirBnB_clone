@@ -3,6 +3,7 @@
     Test module for Base Model of the AirBnB Clone
 """
 import datetime
+import json
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
