@@ -2,7 +2,7 @@
 """
     Test module for the __init__ module that creates a unique FileStorage instance for the application
 """
-from models.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 import os.path
 import unittest
 

@@ -1,0 +1,36 @@
+[1mdiff --git a/models/__pycache__/__init__.cpython-38.pyc b/models/__pycache__/__init__.cpython-38.pyc[m
+[1mindex 280c26b..a00efbd 100644[m
+Binary files a/models/__pycache__/__init__.cpython-38.pyc and b/models/__pycache__/__init__.cpython-38.pyc differ
+[1mdiff --git a/models/__pycache__/base_model.cpython-38.pyc b/models/__pycache__/base_model.cpython-38.pyc[m
+[1mindex 8d2525f..5c47c5e 100644[m
+Binary files a/models/__pycache__/base_model.cpython-38.pyc and b/models/__pycache__/base_model.cpython-38.pyc differ
+[1mdiff --git a/models/engine/__pycache__/__init__.cpython-38.pyc b/models/engine/__pycache__/__init__.cpython-38.pyc[m
+[1mindex 25338d2..d12ddba 100644[m
+Binary files a/models/engine/__pycache__/__init__.cpython-38.pyc and b/models/engine/__pycache__/__init__.cpython-38.pyc differ
+[1mdiff --git a/models/engine/__pycache__/file_storage.cpython-38.pyc b/models/engine/__pycache__/file_storage.cpython-38.pyc[m
+[1mindex 051fb32..5524839 100644[m
+Binary files a/models/engine/__pycache__/file_storage.cpython-38.pyc and b/models/engine/__pycache__/file_storage.cpython-38.pyc differ
+[1mdiff --git a/tests/test_models/__pycache__/__init__.cpython-38.pyc b/tests/test_models/__pycache__/__init__.cpython-38.pyc[m
+[1mindex 3f67467..9999251 100644[m
+Binary files a/tests/test_models/__pycache__/__init__.cpython-38.pyc and b/tests/test_models/__pycache__/__init__.cpython-38.pyc differ
+[1mdiff --git a/tests/test_models/__pycache__/test_base_model.cpython-38.pyc b/tests/test_models/__pycache__/test_base_model.cpython-38.pyc[m
+[1mindex 4887577..7f0c6f1 100644[m
+Binary files a/tests/test_models/__pycache__/test_base_model.cpython-38.pyc and b/tests/test_models/__pycache__/test_base_model.cpython-38.pyc differ
+[1mdiff --git a/tests/test_models/test___init__.py b/tests/test_models/test___init__.py[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mindex 4c17574..fd47beb[m
+[1m--- a/tests/test_models/test___init__.py[m
+[1m+++ b/tests/test_models/test___init__.py[m
+[36m@@ -2,7 +2,7 @@[m
+ """[m
+     Test module for the __init__ module that creates a unique FileStorage instance for the application[m
+ """[m
+[31m-from models.file_storage import FileStorage[m
+[32m+[m[32mfrom models.engine.file_storage import FileStorage[m
+ import os.path[m
+ import unittest[m
+ [m
+[1mdiff --git a/tests/test_models/test_engine/test_file_storage.py b/tests/test_models/test_engine/test_file_storage.py[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
