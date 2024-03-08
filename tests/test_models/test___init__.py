@@ -34,6 +34,6 @@ class Test__init__(unittest.TestCase):
 
         # Test if the objects were reloaded from file to __objects
         if os.path.isfile(FileStorage.__file_path):
-            self.assertIn(f"{Base1.__class__.__name__}.{Base1.id}" in FileStorage.__objects)
+            self.assertIn(f"{Base1.__class__.__name__}.{Base1.id}", FileStorage.__objects)
             self.assertIn(f"{Base2.__class__.__name__}.{Base2.id}", FileStorage.__objects)
             self.assertIn(f"{Base3.__class__.__name__}.{Base3.id}", FileStorage.__objects)

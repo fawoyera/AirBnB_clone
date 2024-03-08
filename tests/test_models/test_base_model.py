@@ -102,6 +102,8 @@ class TestBaseModel(unittest.TestCase):
         b3 = BaseModel()
 
         # Save additional instances & check if they are stored in memory/file
+        b2.save()
+        b3.save()
         self.assertIn(f"{b2.__class__.__name__}.{b2.id}", storage.all())
         self.assertIn(f"{b3.__class__.__name__}.{b3.id}", storage.all())
 
