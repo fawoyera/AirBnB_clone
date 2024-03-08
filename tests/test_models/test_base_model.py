@@ -83,27 +83,32 @@ class TestBaseModel(unittest.TestCase):
                                         b6.__class__.__name__})
 
     def test_storage(self):
-        """ Test if BaseModel instance is stored in the FileStorage on initialization and save
+        """ Test if BaseModel instance is stored in the FileStorage on init
         """
+        # Initialize FileStorage
+        storage = FileStorage()
+        storage.relaod()
+
+        # Create a BaseModel instance
         b1 = BaseModel()
-        self.assertTrue(hasattr(FileStorage, "storage"))
-        storage = FileStorage.storage
-        self.assertIsInstance(storage, FileStorage)
-        FileStorage.__file_path = "files.json"
+
+        # Check if object is stored in memory and file after save
+        self.assertIn(f"{b1.__class__.__name__}.{b1.id}", storage.all())
         b1.save()
-        with open("files.json", mode="r", encoding="utf-8") as fp:
-            self.assertTrue(f"{b1.__class__.__name__}.{b1.id}" in [key for key in json.load(fp)])
-        
+        self.assertIn(f"{b1.__class__.__name__}.{b1.id}", storage.all())
+
+        # Create additional BaseModel instances
         b2 = BaseModel()
         b3 = BaseModel()
-        b2.save()
-        b3.save()
-        with open("files.json", mode="r", encoding="utf-8") as fp:
-            self.assertTrue(f"{b1.__class__.__name__}.{b1.id}" in [key for key in json.load(fp)])
-            self.assertTrue(f"{b2.__class__.__name__}.{b2.id}" in [key for key in json.load(fp)])
-            self.assertTrue(f"{b3.__class__.__name__}.{b3.id}" in [key for key in json.load(fp)])
 
-        objects = FileStorage.__objects
-        self.assertTrue(f"{b1.__class__.__name__}.{b1.id}" in [key for key in objects])
-        self.assertTrue(f"{b2.__class__.__name__}.{b2.id}" in [key for key in objects])
-        self.assertTrue(f"{b3.__class__.__name__}.{b3.id}" in [key for key in objects])
+        # Save additional instances & check if they are stored in memory/file
+        self.assertIn(f"{b2.__class__.__name__}.{b2.id}", storage.all())
+        self.assertIn(f"{b3.__class__.__name__}.{b3.id}", storage.all())
+
+        # Reload FileStorage from file
+        storage.relaod()
+
+        # Check if objects are correctly loaded from file upon reload
+        self.assertIn(f"{b1.__class__.__name__}.{b1.id}", storage.all())
+        self.assertIn(f"{b2.__class__.__name__}.{b2.id}", storage.all())
+        self.assertIn(f"{b3.__class__.__name__}.{b3.id}", storage.all())

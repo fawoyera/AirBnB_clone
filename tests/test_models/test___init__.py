@@ -2,6 +2,7 @@
 """
     Test module for the __init__ module that creates a unique FileStorage instance for the application
 """
+from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 import os.path
 import unittest
@@ -13,22 +14,26 @@ class Test__init__(unittest.TestCase):
     def test_models_init(self):
         """ Test the init module of the package "model".
 
-            Checks if the objects are reloaded from file at the start of application
+            Checks if the objects are reloaded from file on initialization
         """
         FileStorage.__file_path = "files.json"
-        file7 = FileStorage()
-        file8 = FileStorage()
-        file9 = FileStorage()
-        file7.save()
-        file8.save()
-        file9.save()
-        FileStorage.__objects = {}
+        Base1 = BaseModel()  # create new objects and save to file
+        Base2 = BaseModel()
+        Base3 = BaseModel()
+        storage = FileStorage()
+        storage.save()
+
+        FileStorage.__objects = {}  # set __objects to empty dictionary
+
+        # Test if variable storage is created on importing __init__ module
         import models.__init__
         self.assertTrue(hasattr(models.__init__, "storage"))
-        storage = models.__init__.storage
-        self.assertIsInstance(storage, FileStorage)
+
+        # Test if variable storage is an instance of FileStorage
+        self.assertIsInstance(models.__init__.storage, FileStorage)
+
+        # Test if the objects were reloaded from file to __objects
         if os.path.isfile(FileStorage.__file_path):
-            self.assertTrue(f"{storage.__class__.__name__}.{storage.id}" in [key for key in FileStorage.__objects])
-            self.assertTrue(f"{file7.__class__.__name__}.{file7.id}" in [key for key in FileStorage.__objects])
-            self.assertTrue(f"{file8.__class__.__name__}.{file8.id}" in [key for key in FileStorage.__objects])
-            self.assertTrue(f"{file9.__class__.__name__}.{file9.id}" in [key for key in FileStorage.__objects])
+            self.assertIn(f"{Base1.__class__.__name__}.{Base1.id}" in FileStorage.__objects)
+            self.assertIn(f"{Base2.__class__.__name__}.{Base2.id}", FileStorage.__objects)
+            self.assertIn(f"{Base3.__class__.__name__}.{Base3.id}", FileStorage.__objects)
