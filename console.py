@@ -26,6 +26,7 @@ Usage Example:
 import cmd
 import sys
 from models.base_model import BaseModel
+from models.user import User
 from models.__init__ import storage
 
 
@@ -38,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
     in the console and calls the appropriate storage engine APIs to manipulate
     application data/models.
     """
-    classes = {'BaseModel': BaseModel}
+    classes = {'BaseModel': BaseModel, 'User': User}
     types = {
         'number_rooms': int, 'number_bathrooms': int,
         'max_guest': int, 'price_by_night': int,
