@@ -20,7 +20,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
         self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
         storage = FileStorage()
-        storage.relaod()
+        storage.reload()
         self.assertTrue(hasattr(storage, "_FileStorage__file_path"))
         self.assertTrue(hasattr(storage, "_FileStorage__objects"))
         
@@ -93,7 +93,7 @@ class TestFileStorage(unittest.TestCase):
         storage = FileStorage()
         storage.save()
         FileStorage.__objects = {}  # set __object to an empty dictionary
-        storage.relaod()  # reload objects from file
+        storage.reload()  # reload objects from file
 
         # Test if all objects have been reloaded to __objects
         if os.path.isfile(FileStorage.__file_path):

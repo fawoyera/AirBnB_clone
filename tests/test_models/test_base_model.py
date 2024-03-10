@@ -87,7 +87,7 @@ class TestBaseModel(unittest.TestCase):
         """
         # Initialize FileStorage
         storage = FileStorage()
-        storage.relaod()
+        storage.reload()
 
         # Create a BaseModel instance
         b1 = BaseModel()
@@ -108,7 +108,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn(f"{b3.__class__.__name__}.{b3.id}", storage.all())
 
         # Reload FileStorage from file
-        storage.relaod()
+        storage.reload()
 
         # Check if objects are correctly loaded from file upon reload
         self.assertIn(f"{b1.__class__.__name__}.{b1.id}", storage.all())
