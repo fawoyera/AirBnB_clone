@@ -100,3 +100,20 @@ class TestFileStorage(unittest.TestCase):
             self.assertTrue(f"{Base5.__class__.__name__}.{Base5.id}" in FileStorage.__objects)
             self.assertTrue(f"{Base6.__class__.__name__}.{Base6.id}" in FileStorage.__objects)
             self.assertTrue(f"{Base7.__class__.__name__}.{Base7.id}" in FileStorage.__objects)
+
+    def test_save_user(self):
+        """Test if instance of User is correctly serialized & saved to file"""
+        # Create and save to file instances of the User class
+        user1 = User()
+        user2 = User()
+        user3 = User()
+        user1.save()
+        user2.save()
+        user3.save()
+
+        # Test if the instances are saved to file and reloaded correctly
+        from models.__init__ import storage
+        storage.reload()
+        self.assertIn(f"{user1.__class__.__name__}.{user1.id}", storage.all())
+        self.assertIn(f"{user2.__class__.__name__}.{user2.id}", storage.all())
+        self.assertIn(f"{user3.__class__.__name__}.{user3.id}", storage.all())
