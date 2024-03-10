@@ -266,6 +266,19 @@ class HBNBCommand(cmd.Cmd):
             instanceId = line.split('(')[1].split(')')[0]
             return f"destroy {className} {instanceId}"
 
+        # Handel <class name>.update(<id>, <attribute name>, <attribute value>)
+        if ".update(" in line and ')' in line:
+            className = line.split('.')[0]
+            info = line.split('(')[1].split(')')[0].split(',')
+            if len(info) < 1:
+                return f"update {className}"
+            if len(info) < 2:
+                return f"update {className} {info[0]}"
+            if len(info) < 3:
+                return f"update {className} {info[0]} {info[1]}"
+            if len(info) < 4:
+                return f"update {className} {info[0]} {info[1]} {info[2]}"
+
         # In case no special command found
         else:
             return line
