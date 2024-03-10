@@ -4,8 +4,8 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """ This class defines the state modual and it attributes 
-    
+    """ This class defines the state modual and it attributes
+
     Attributes:
       name: state name (string)
     """

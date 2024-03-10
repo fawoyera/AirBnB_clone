@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
         if not className:
             print("** class name missing **")
             return
-        
+
         if className not in self.classes:
             print("** class doesn't exist **")
             return
@@ -109,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         if className not in self.classes:
             print("** class doesn't exist **")
             return
-        
+
         if len(args) < 2:
             print("** instance id missing **")
             return
@@ -131,18 +131,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             args = line.split()
 
-        className = args[0]
-        if className not in self.classes:
+        cName = args[0]
+        if cName not in self.classes:
             print("** class doesn't exist **")
             return
-        
+
         if len(args) < 2:
             print("** instance id missing **")
             return
 
         instanceId = args[1]
         try:
-            storage._FileStorage__objects.__delitem__(className + '.' + instanceId)
+            storage._FileStorage__objects.__delitem__(cName + '.' + instanceId)
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -174,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         """Updates an instance based on the class name and id by adding or
         updating attribute
-        
+
         Usage: update <class name> <id> <attribute name> <attribute value>
         [!Important] Only one attribute can be updated at the time
         """
@@ -199,7 +199,7 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
             return
         attr_key = args[2].strip('"')
-        
+
         if len(args) < 4:
             print("** value missing **")
             return
@@ -213,31 +213,7 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attr_key, attr_value)
         storage.save()
 
-        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
 # Call The cmd loop to start the program
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

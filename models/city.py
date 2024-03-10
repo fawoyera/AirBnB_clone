@@ -4,8 +4,8 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """ This class defines the city modual and it attributes 
-    
+    """ This class defines the city modual and it attributes
+
     Attributes:
       state_id: state.id (string)
       name: name of city (string)
