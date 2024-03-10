@@ -25,6 +25,7 @@ Usage Example:
 
 import cmd
 import sys
+import re
 from models.__init__ import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -220,6 +221,48 @@ class HBNBCommand(cmd.Cmd):
         instance = storage.all()[key]
         setattr(instance, attr_key, attr_value)
         storage.save()
+
+    # Count
+    def do_count(self, line):
+        """Count the number of class instances
+        [Usage]: count <class name>
+        """
+        if not line:
+            print("** class name missing **")
+            return
+
+        className = line.split()[0]
+        if className not in self.classes:
+            print("** class doesn't exist **")
+            return
+
+        instancesNumber = 0
+        for key, value in storage._FileStorage__objects.items():
+            if key.split('.')[0] == className:
+                instancesNumber += 1
+        print(instancesNumber)
+
+    # Modify the precmd to handl special calls
+    def precmd(self, line):
+        # Handel <class name>.all()
+        if ".all()" in line:
+            className = line.split('.')[0]
+            return f"all {className}"
+
+        # Handel <class name>.count()
+        if ".count()" in line:
+            className = line.split('.')[0]
+            return f"count {className}"
+
+        # Handel <class name>.show(<id>)
+        if ".show(" in line and ')' in line:
+            className = line.split('.')[0]
+            instanceId = line.split('(')[1].split(')')[0]
+            return f"show {className} {instanceId}"
+
+        # In case no special command found
+        else:
+            return line
 
 
 # Call The cmd loop to start the program
