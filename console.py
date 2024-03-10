@@ -260,6 +260,12 @@ class HBNBCommand(cmd.Cmd):
             instanceId = line.split('(')[1].split(')')[0]
             return f"show {className} {instanceId}"
 
+        # Handel <class name>.destroy(<id>)
+        if ".destroy(" in line and ')' in line:
+            className = line.split('.')[0]
+            instanceId = line.split('(')[1].split(')')[0]
+            return f"destroy {className} {instanceId}"
+
         # In case no special command found
         else:
             return line
