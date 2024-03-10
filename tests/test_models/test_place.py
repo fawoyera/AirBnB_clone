@@ -5,6 +5,7 @@
 from models.__init__ import storage
 from models.base_model import BaseModel
 from models.place import Place
+import unittest
 
 
 class TestState(unittest.TestCase):
@@ -29,17 +30,17 @@ class TestState(unittest.TestCase):
         self.assertTrue(hasattr(Place, "amenity_ids"))
 
         # Test if the type of attributes are correct
-        self.assertTrue(type(Place.city_id).__name__, "str"))
-        self.assertTrue(type(Place.user_id).__name__, "str"))
-        self.assertTrue(type(Place.name).__name__, "str"))
-        self.assertTrue(type(Place.description).__name__, "str"))
-        self.assertTrue(type(Place.number_rooms).__name__, "int"))
-        self.assertTrue(type(Place.number_bathrooms).__name__, "int"))
-        self.assertTrue(type(Place.max_guest).__name__, "int"))
-        self.assertTrue(type(Place.price_by_night).__name__, "int"))
-        self.assertTrue(type(Place.latitude).__name__, "float"))
-        self.assertTrue(type(Place.longitude).__name__, "float"))
-        self.assertTrue(type(Place.amenity_ids).__name__, "list"))
+        self.assertTrue(type(Place.city_id).__name__, "str")
+        self.assertTrue(type(Place.user_id).__name__, "str")
+        self.assertTrue(type(Place.name).__name__, "str")
+        self.assertTrue(type(Place.description).__name__, "str")
+        self.assertTrue(type(Place.number_rooms).__name__, "int")
+        self.assertTrue(type(Place.number_bathrooms).__name__, "int")
+        self.assertTrue(type(Place.max_guest).__name__, "int")
+        self.assertTrue(type(Place.price_by_night).__name__, "int")
+        self.assertTrue(type(Place.latitude).__name__, "float")
+        self.assertTrue(type(Place.longitude).__name__, "float")
+        self.assertTrue(type(Place.amenity_ids).__name__, "list")
 
     def test_instance(self):
         """Test if instance of Place is saved to file and reloaded"""
@@ -53,6 +54,9 @@ class TestState(unittest.TestCase):
 
         # reload object from file and test if instances are reloaded rightly
         storage.reload()
-        self.assertIn(f"{place1.__class__.__name__}.{place1.id}", storage.all())
-        self.assertIn(f"{place2.__class__.__name__}.{place2.id}", storage.all())
-        self.assertIn(f"{place3.__class__.__name__}.{place3.id}", storage.all())
+        self.assertIn(f"{place1.__class__.__name__}.{place1.id}",
+                      storage.all())
+        self.assertIn(f"{place2.__class__.__name__}.{place2.id}",
+                      storage.all())
+        self.assertIn(f"{place3.__class__.__name__}.{place3.id}",
+                      storage.all())

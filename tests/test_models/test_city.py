@@ -5,6 +5,7 @@
 from models.__init__ import storage
 from models.base_model import BaseModel
 from models.city import City
+import unittest
 
 
 class TestState(unittest.TestCase):
@@ -20,8 +21,8 @@ class TestState(unittest.TestCase):
         self.assertTrue(hasattr(City, "name"))
 
         # Test if the type of attributes state_id and name is string
-        self.assertTrue(type(City.state_id).__name__, "str"))
-        self.assertTrue(type(City.name).__name__, "str"))
+        self.assertTrue(type(City.state_id).__name__, "str")
+        self.assertTrue(type(City.name).__name__, "str")
 
     def test_instance(self):
         """Test if instance of City is saved to file and reloaded"""

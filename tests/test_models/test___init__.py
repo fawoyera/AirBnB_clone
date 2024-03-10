@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-    Test module for the __init__ module that creates a unique FileStorage instance for the application
+    Test module for the __init__ module.
+
+    Creates a unique FileStorage instance(storage) for the application
 """
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
@@ -25,8 +27,10 @@ class Test__init__(unittest.TestCase):
         # Test if the objects are reloaded from file on import of __init__
         import models.__init__
         storage = FileStorage()
-        self.assertIn(f"{self.Base11.__class__.__name__}.{self.Base11.id}", storage.all())
-        self.assertIn(f"{self.Base12.__class__.__name__}.{self.Base12.id}", storage.all())
+        self.assertIn(f"{self.Base11.__class__.__name__}.{self.Base11.id}",
+                      storage.all())
+        self.assertIn(f"{self.Base12.__class__.__name__}.{self.Base12.id}",
+                      storage.all())
 
         # Create and save objects to file and check if they are reloaded
         FileStorage.__file_path = "files.json"
@@ -51,6 +55,9 @@ class Test__init__(unittest.TestCase):
 
         # Test if the objects were reloaded from file to __objects
         if os.path.isfile(FileStorage.__file_path):
-            self.assertIn(f"{Base1.__class__.__name__}.{Base1.id}", FileStorage.__objects)
-            self.assertIn(f"{Base2.__class__.__name__}.{Base2.id}", FileStorage.__objects)
-            self.assertIn(f"{Base3.__class__.__name__}.{Base3.id}", FileStorage.__objects)
+            self.assertIn(f"{Base1.__class__.__name__}.{Base1.id}",
+                          FileStorage.__objects)
+            self.assertIn(f"{Base2.__class__.__name__}.{Base2.id}",
+                          FileStorage.__objects)
+            self.assertIn(f"{Base3.__class__.__name__}.{Base3.id}",
+                          FileStorage.__objects)
