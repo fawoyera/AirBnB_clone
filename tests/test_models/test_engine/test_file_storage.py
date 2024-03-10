@@ -117,3 +117,88 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(f"{user1.__class__.__name__}.{user1.id}", storage.all())
         self.assertIn(f"{user2.__class__.__name__}.{user2.id}", storage.all())
         self.assertIn(f"{user3.__class__.__name__}.{user3.id}", storage.all())
+
+    def test_save_state(self):
+        """Test if instance of State is correctly serialized & saved to file"""
+        # Create and save to file instances of the State class
+        state1 = State()
+        state2 = State()
+        state3 = State()
+        state1.save()
+        state2.save()
+        state3.save()
+
+        # Test if the instances are saved to file and reloaded correctly
+        from models.__init__ import storage
+        storage.reload()
+        self.assertIn(f"{state1.__class__.__name__}.{state1.id}", storage.all())
+        self.assertIn(f"{state2.__class__.__name__}.{state2.id}", storage.all())
+        self.assertIn(f"{state3.__class__.__name__}.{state3.id}", storage.all())
+
+    def test_save_city(self):
+        """Test if instance of City is correctly serialized & saved to file"""
+        # Create and save to file instances of the City class
+        city1 = City()
+        city2 = City()
+        city3 = City()
+        city1.save()
+        city2.save()
+        city3.save()
+
+        # Test if the instances are saved to file and reloaded correctly
+        from models.__init__ import storage
+        storage.reload()
+        self.assertIn(f"{city1.__class__.__name__}.{city1.id}", storage.all())
+        self.assertIn(f"{city2.__class__.__name__}.{city2.id}", storage.all())
+        self.assertIn(f"{city3.__class__.__name__}.{city3.id}", storage.all())
+
+    def test_save_amenity(self):
+        """Test if instance of Amenity is correctly serialized & saved to file"""
+        # Create and save to file instances of the Amenity class
+        amenity1 = Amenity()
+        amenity2 = Amenity()
+        amenity3 = Amenity()
+        amenity1.save()
+        amenity2.save()
+        amenity3.save()
+
+        # Test if the instances are saved to file and reloaded correctly
+        from models.__init__ import storage
+        storage.reload()
+        self.assertIn(f"{amenity1.__class__.__name__}.{amenity1.id}", storage.all())
+        self.assertIn(f"{amenity2.__class__.__name__}.{amenity2.id}", storage.all())
+        self.assertIn(f"{amenity3.__class__.__name__}.{amenity3.id}", storage.all())
+
+    def test_save_place(self):
+        """Test if instance of Place is correctly serialized & saved to file"""
+        # Create and save to file instances of the Place class
+        place1 = Place()
+        place2 = Place()
+        place3 = Place()
+        place1.save()
+        place2.save()
+        place3.save()
+
+        # Test if the instances are saved to file and reloaded correctly
+        from models.__init__ import storage
+        storage.reload()
+        self.assertIn(f"{place1.__class__.__name__}.{place1.id}", storage.all())
+        self.assertIn(f"{place2.__class__.__name__}.{place2.id}", storage.all())
+        self.assertIn(f"{place3.__class__.__name__}.{palce3.id}", storage.all())
+
+    def test_save_review(self):
+        """Test if instance of Review is correctly serialized & saved to file"""
+        # Create and save to file instances of the Review class
+        review1 = Review()
+        review2 = Review()
+        review3 = Review()
+        review1.save()
+        review2.save()
+        review3.save()
+
+        # Test if the instances are saved to file and reloaded correctly
+        from models.__init__ import storage
+        storage.reload()
+        self.assertIn(f"{review1.__class__.__name__}.{review1.id}", storage.all())
+        self.assertIn(f"{review2.__class__.__name__}.{review2.id}", storage.all())
+        self.assertIn(f"{review3.__class__.__name__}.{review3.id}", storage.all())
