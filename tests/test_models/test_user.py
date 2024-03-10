@@ -4,6 +4,7 @@
 """
 from models.__init__ import storage
 from models.user import User
+import unittest
 
 
 class TestUser(unittest.TestCase):
@@ -15,15 +16,15 @@ class TestUser(unittest.TestCase):
         """
         # Test if the public attributes exist
         self.assertTrue(hasattr(User, "email"))
-        self.assertrue(hasattr(User, "password"))
+        self.assertTrue(hasattr(User, "password"))
         self.assertTrue(hasattr(User, "first_name"))
         self.assertTrue(hasattr(User, "last_name"))
 
         # Test if the public attributes are of type string
-        self.asserttrue(type(User.email).__name__, "str")
-        self.asserttrue(type(User.password).__name__, "str")
-        self.asserttrue(type(User.first_name).__name__, "str")
-        self.asserttrue(type(User.last_name).__name__, "str")
+        self.assertTrue(type(User.email).__name__, "str")
+        self.assertTrue(type(User.password).__name__, "str")
+        self.assertTrue(type(User.first_name).__name__, "str")
+        self.assertTrue(type(User.last_name).__name__, "str")
 
         # Create and save to file an instance of the class User
         user1 = User()
@@ -31,7 +32,7 @@ class TestUser(unittest.TestCase):
 
         # check if instance has the same class attributes
         self.assertTrue(hasattr(user1, "email"))
-        self.assertrue(hasattr(user1, "password"))
+        self.assertTrue(hasattr(user1, "password"))
         self.assertTrue(hasattr(user1, "first_name"))
         self.assertTrue(hasattr(user1, "last_name"))
 
@@ -40,11 +41,10 @@ class TestUser(unittest.TestCase):
         storage.reload()
         self.assertIn(f"{user1.__class__.__name__}.{user1.id}", storage.all())
 
-
         # Create additional instances of User and save to file
         user2 = User()
         user3 = User()
-        user3 = User()
+        user4 = User()
         user2.save()
         user3.save()
         user4.save()

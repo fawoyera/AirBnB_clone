@@ -5,6 +5,7 @@
 from models.__init__ import storage
 from models.base_model import BaseModel
 from models.state import State
+import unittest
 
 
 class TestState(unittest.TestCase):
@@ -19,7 +20,7 @@ class TestState(unittest.TestCase):
         self.assertTrue(hasattr(State, "name"))
 
         # Test if the type of attribute name is string
-        self.assertTrue(type(State.name).__name__, "str"))
+        self.assertTrue(type(State.name).__name__, "str")
 
     def test_instance(self):
         """Test if instances are saved to file and reloaded correctly"""
@@ -33,6 +34,9 @@ class TestState(unittest.TestCase):
 
         # reload objects from file and test if instances are correctly loaded
         storage.reload()
-        self.assertIn(f"{state1.__class__.__name__}.{state1.id}", storage.all())
-        self.assertIn(f"{state2.__class__.__name__}.{state2.id}", storage.all())
-        self.assertIn(f"{state3.__class__.__name__}.{state3.id}", storage.all())
+        self.assertIn(f"{state1.__class__.__name__}.{state1.id}",
+                      storage.all())
+        self.assertIn(f"{state2.__class__.__name__}.{state2.id}",
+                      storage.all())
+        self.assertIn(f"{state3.__class__.__name__}.{state3.id}",
+                      storage.all())
