@@ -4,8 +4,8 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """ This class defines the user modual and it attributes 
-    
+    """ This class defines the user modual and it attributes
+
     Attributes:
       email: User email (string)
       password: User password (string)
