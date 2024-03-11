@@ -264,17 +264,10 @@ class HBNBCommand(cmd.Cmd):
             # Casting the attribute value if neccessary
             if attr_key in self.types:
                 attr_value = self.types[attr_key](attr_value)
-            #Update the instance attributes    
+            # Update the instance attributes
             setattr(instance, attr_key, attr_value)
         storage.save()
 
-
-
-
-
-
-
-        
     # Count
     def do_count(self, line):
         """Count the number of class instances
@@ -320,7 +313,7 @@ class HBNBCommand(cmd.Cmd):
             return f"destroy {className} {instanceId}"
 
         # Handel <class name>.update(<id>, <dictionary>)
-        match = re.match(r'(.+)\.update\((.*),\s(\{.*\})\)$',line)
+        match = re.match(r'(.+)\.update\((.*), (\{.*\})\)$', line)
         if match:
             className = match[1]
             instanceId = match[2]
