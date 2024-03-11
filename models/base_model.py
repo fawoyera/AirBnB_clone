@@ -44,7 +44,7 @@ class BaseModel:
     # Public Methodes
     def __str__(self):
         """ Return string representation of BaseModel instance """
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """ Updates the `updated_at` attribute with the current datetime. """
