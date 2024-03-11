@@ -5,6 +5,7 @@
 from models.__init__ import storage
 from models.base_model import BaseModel
 from models.amenity import Amenity
+import unittest
 
 
 class TestState(unittest.TestCase):
@@ -19,7 +20,7 @@ class TestState(unittest.TestCase):
         self.assertTrue(hasattr(Amenity, "name"))
 
         # Test if the type of attributes name is string
-        self.assertTrue(type(Amenity.name).__name__, "str"))
+        self.assertTrue(type(Amenity.name).__name__, "str")
 
     def test_instance(self):
         """Test if instance of Amenity is saved to file and reloaded"""
@@ -33,6 +34,9 @@ class TestState(unittest.TestCase):
 
         # reload object from file and test if instances are reloaded rightly
         storage.reload()
-        self.assertIn(f"{amenity1.__class__.__name__}.{amenity1.id}", storage.all())
-        self.assertIn(f"{amenity2.__class__.__name__}.{amenity2.id}", storage.all())
-        self.assertIn(f"{amenity3.__class__.__name__}.{amenity3.id}", storage.all())
+        self.assertIn(f"{amenity1.__class__.__name__}.{amenity1.id}",
+                      storage.all())
+        self.assertIn(f"{amenity2.__class__.__name__}.{amenity2.id}",
+                      storage.all())
+        self.assertIn(f"{amenity3.__class__.__name__}.{amenity3.id}",
+                      storage.all())
