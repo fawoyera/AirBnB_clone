@@ -26,6 +26,7 @@ Usage Example:
 import cmd
 import sys
 import re
+import ast
 from models.__init__ import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -222,6 +223,58 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attr_key, attr_value)
         storage.save()
 
+    # Update by dictionary
+    def do_update_dict(self, line):
+        """Updates an instance based on the class name, id and a dictionary
+        of the new attributes and values
+
+        Usage: update_dict <class name> <id> <dictionary>
+        """
+        if not line:
+            print("** class name missing **")
+            return
+
+        if line.split()[0] not in self.classes:
+            print("** class doesn't exist **")
+            return
+        args = line.split()
+
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        key = f"{args[0]}.{args[1]}"
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+
+        if len(args) < 3:
+            print("** dictionary is missing **")
+            return
+
+        # Extract and convert the dictionary string to a dictionary object
+        dictionary_str = line.split('{')[1].split('}')[0]
+        try:
+            dictionary = ast.literal_eval("{" + dictionary_str + "}")
+        except (ValueError, SyntaxError):
+            print("** invalid dictionary format **")
+            return
+
+        instance = storage.all()[key]
+        for attr_key, attr_value in dictionary.items():
+            # Casting the attribute value if neccessary
+            if attr_key in self.types:
+                attr_value = self.types[attr_key](attr_value)
+            #Update the instance attributes    
+            setattr(instance, attr_key, attr_value)
+        storage.save()
+
+
+
+
+
+
+
+        
     # Count
     def do_count(self, line):
         """Count the number of class instances
@@ -266,8 +319,16 @@ class HBNBCommand(cmd.Cmd):
             instanceId = line.split('(')[1].split(')')[0]
             return f"destroy {className} {instanceId}"
 
+        # Handel <class name>.update(<id>, <dictionary>)
+        match = re.match(r'(.+)\.update\((.*),\s(\{.*\})\)$',line)
+        if match:
+            className = match[1]
+            instanceId = match[2]
+            dictionary = match[3]
+            return f"update_dict {className} {instanceId} {dictionary}"
+
         # Handel <class name>.update(<id>, <attribute name>, <attribute value>)
-        if ".update(" in line and ')' in line:
+        elif ".update(" in line and ')' in line:
             className = line.split('.')[0]
             info = line.split('(')[1].split(')')[0].split(',')
             if len(info) < 1:
