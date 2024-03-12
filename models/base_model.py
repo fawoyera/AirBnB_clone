@@ -5,6 +5,7 @@ import uuid
 import models
 from datetime import datetime
 
+
 class BaseModel:
     """
     Base class for all models in the AirBnB clone project.
