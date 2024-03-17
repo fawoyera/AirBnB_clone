@@ -77,6 +77,7 @@ section.filters ul.popover {
     -o-border-radius: 4px;
     display: none;
     line-height: 1.5;
+    z-index: 1
 }
 section.filters .locations:hover ul.popover {
     display: block;
