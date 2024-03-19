@@ -19,32 +19,5 @@ ul {
 }
 .container {
     margin: 30px auto;
-}
-
-/* X-Small devices and phones */
-@media (max-width: 575.98px) {
-    .container {
-        max-width: 100%;
-    }
-}
-/* Small devices and landscape phones */
-@media (min-width: 576px) and (max-width: 991.98px)
-{
-    .container {
-        max-width: 100%;
-    }
-}
-/* Desktops and medium screens */
-@media (min-width: 992px) and (max-width: 1199.98px)
-{
-    .container {
-        max-width: 1000px;
-    }
-}
-/* Desktops and large screens */
-@media (min-width: 1200px)
-{
-    .container {
-        max-width: 1000px;
-    }
+    width: min(90%, 1000px);
 }

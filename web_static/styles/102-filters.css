@@ -1,0 +1,136 @@
+section.filters {
+    margin-top: 100px;
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+section.filters button {
+    position: absolute;
+    right: 0px;
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: 0;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    margin: 0 30px 0 0;
+}
+section.filters button:hover {
+    opacity: 90%;
+}
+
+section.filters .locations,
+section.filters .amenities {
+    height: 100%;
+    width: 25%;
+    margin-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    position: relative;
+}
+section.filters .locations {
+    border-right: 1px solid #DDDDDD;
+}
+
+section.filters .locations h3,
+section.filters .amenities h3 {
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+section.filters .locations h4,
+section.filters .amenities h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+section.filters ul.popover {
+    position: absolute;
+    top: 100%;
+    padding: 30px;
+    left: -30px;
+    border: 1px solid #DDDDDD;
+    width: calc(100% + 30px);
+    background-color: #FAFAFA;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    display: none;
+    line-height: 1.5;
+    z-index: 1
+}
+section.filters .locations:hover ul.popover {
+    display: block;
+}
+section.filters .amenities:hover ul.popover {
+    display: block;
+}
+section.filters ul.popover li h2 {
+    font-size: 16px;
+    margin: 0px;
+}
+
+section.filters ul.popover li .popover_list {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+@media (max-width:768px) {
+    section.filters .locations,
+    section.filters .amenities {
+        display: none;
+        width: 100%;
+    }
+    section.filters button {
+        position: static;
+        margin: 20px;
+        width: 100%;
+        text-align: left;
+        padding-left: 60px;
+    }
+    section.filters::before {
+        content: "";
+        background: url("../images/icon_search.png");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: calc(50% - 12.5px);
+        left: 35px;
+        color: white;
+        z-index: 2;
+    }
+    section.filters::after {
+        content: "";
+        background: url("../images/icon_options.png");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: calc(50% - 12.5px);
+        right: 40px;
+        color: white;
+        z-index: 10;
+    }
+}
