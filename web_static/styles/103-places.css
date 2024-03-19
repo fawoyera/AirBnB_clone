@@ -91,9 +91,6 @@ section.places article .user {
     margin: 20px auto 10px auto;
     width: 100%;
 }
-section.places article .user .owner {
-    font-weight: bold;
-}
 section.places article .amenities,
 section.places article .reviews {
     margin-top: 40px;
