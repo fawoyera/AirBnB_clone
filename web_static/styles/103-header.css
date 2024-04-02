@@ -1,0 +1,16 @@
+img {
+	max-width: 100%;
+}
+
+header {
+	background-color: #FFFFFF;
+	height: 70px;
+	width: 100%;
+	border-bottom: 1px #CCCCCC;
+	padding-left: 20px;
+	background-image: url("images/logo.png");
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: left center;
+	background-origin: content-box;
+}

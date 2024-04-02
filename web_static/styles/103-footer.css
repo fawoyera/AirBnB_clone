@@ -1,0 +1,19 @@
+img {
+	max-width: 100%;
+}
+
+footer {
+	background-color: #FFFFFF;
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-top: 1px solid #CCCCCC;
+}
